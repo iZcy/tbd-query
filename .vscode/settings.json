@@ -1,3 +1,18 @@
 {
-    "git.ignoreLimitWarning": true
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "database": "project_tbd_01",
+            "username": "root",
+            "name": "project_tbd",
+            "password": "Z@cky4MYSQL"
+        }
+    ]
 }

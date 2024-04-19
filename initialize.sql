@@ -1,20 +1,54 @@
 -- @block
-
-CREATE TABLE Karya(
+CREATE TABLE Menu(
     id VARCHAR(36) default(uuid()),
-    id_dosping VARCHAR(36),
-    id_reviewer VARCHAR(36),
-    cabang_PKM ENUM('KC','PI','K'),
-    judul_PKM VARCHAR(255) UNIQUE,
-    alasan TEXT,
-    inovasi TEXT,
-    link_ss_google TEXT,
-    link_proposal TEXT,
-    link_revisi TEXT,
-    komentar TEXT,
-    feedback_dosen ENUM('Belum Submit','Menunggu Review','Revisi','Diterima','Tidak Lolos'),
-    feedback_reviewer ENUM('Belum Submit','Menunggu Review','Revisi','Diterima','Tidak Lolos'),
+    nama_menu TEXT,
+    harga_menu INT,
+    PRIMARY KEY(id)
+)
+
+-- @block
+
+CREATE TABLE Pelanggan(
+    id VARCHAR(36) default(uuid()),
+    nama TEXT,
+    usia INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(id_dosping) REFERENCES User(id),
-    FOREIGN KEY(id_reviewer) REFERENCES User(id)
+    UNIQUE(nama)
+)
+
+-- @block
+
+CREATE TABLE Barista(
+    id VARCHAR(36) default(uuid()),
+    nama TEXT,
+    gaji_pokok INT,
+    PRIMARY KEY(id)   
+)
+
+-- @block
+
+CREATE TABLE OrderList(
+    id VARCHAR(36) default(uuid()),
+    id_pelanggan VARCHAR(36) NOT NULL,
+    id_menu VARCHAR(36) NOT NULL,
+    id_barista VARCHAR(36) NOT NULL,
+    jumlah INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_pelanggan) REFERENCES Pelanggan(id),
+    FOREIGN KEY(id_menu) REFERENCES Menu(id),
+    FOREIGN KEY(id_barista) REFERENCES Barista(id)
+)
+
+-- @block
+
+CREATE TABLE Premium(
+    id VARCHAR(36) default(uuid()),
+    id_pelanggan VARCHAR(36) NOT NULL,
+    id_barista VARCHAR(36) NOT NULL,
+    tanggal_pembuatan DATE,
+    masa_berlaku DATE,
+    diskon FLOAT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_pelanggan) REFERENCES Pelanggan(id),
+    FOREIGN KEY(id_barista) REFERENCES Barista(id)
 )
