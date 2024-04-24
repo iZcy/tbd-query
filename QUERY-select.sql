@@ -47,3 +47,7 @@ SELECT usia, COUNT(*) AS 'Jumlah Pelanggan' FROM Pelanggan WHERE usia < 20 GROUP
 
 -- @block
 SELECT MAX(usia) AS 'Usia Tertua' FROM Pelanggan;
+
+-- @block
+SELECT * FROM Pelanggan
+ORDER BY usia DESC;
